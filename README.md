@@ -1,4 +1,4 @@
-# PayByBank SDK (iOS)
+# PayByBank SDK (Android)
 
 The Ecospend Gateway presents PayByBank SDK as an alternative and easier form of Open Banking Instant Payment solutions. PayByBank SDK provides you the option of downsizing the development effort for a PIS and AIS journeys to a single SDK integration. PayByBank undertakes all of interaction in the payment user journey with your branding on display.
 
