@@ -1,15 +1,15 @@
 package com.ecospend.paylinkmobilesdk.app
 
 import android.app.Application
-import com.ecospend.paylinksdk.app.PayByBank
-import com.ecospend.paylinksdk.app.PayByBankEnvironment
+import com.ecospend.paybybank.app.PayByBank
+import com.ecospend.paybybank.app.PayByBankEnvironment
 
 class PaylinkMobileSDK : Application() {
     override fun onCreate() {
         super.onCreate()
         PayByBank.configure(
-            clientId = "*******************",
-            clientSecret = "******************",
+            clientId = "*********************",
+            clientSecret = "*************************",
             environment = PayByBankEnvironment.Sandbox
         )
     }

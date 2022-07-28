@@ -10,13 +10,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.ecospend.paylinkmobilesdk.R
 import com.ecospend.paylinkmobilesdk.databinding.FragmentDatalinkBinding
-import com.ecospend.paylinksdk.app.PayByBank
-import com.ecospend.paylinksdk.data.remote.model.PayByBankNotificationOptionsRequest
-import com.ecospend.paylinksdk.data.remote.model.datalink.*
-import com.ecospend.paylinksdk.data.remote.model.datalink.request.DatalinkCreateRequest
-import com.ecospend.paylinksdk.data.remote.model.datalink.response.ConsentPermission
-import com.ecospend.paylinksdk.data.remote.model.paylink.PayByBankCurrency
-import com.ecospend.paylinksdk.shared.model.completion.PayByBankStatus
+import com.ecospend.paybybank.app.PayByBank
+import com.ecospend.paybybank.data.remote.model.PayByBankNotificationOptionsRequest
+import com.ecospend.paybybank.data.remote.model.datalink.*
+import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkCreateRequest
+import com.ecospend.paybybank.data.remote.model.datalink.response.ConsentPermission
+import com.ecospend.paybybank.data.remote.model.paylink.PayByBankCurrency
+import com.ecospend.paybybank.shared.model.completion.PayByBankStatus
 
 class DatalinkFragment : Fragment() {
 
