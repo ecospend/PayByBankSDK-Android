@@ -6,6 +6,6 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
-rootProject.name = "PaylinkMobileSDK"
+rootProject.name = "PayByBankSDK"
 include ':app'
-include ':PaylinkSDK'
+include ':PayByBank'

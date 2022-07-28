@@ -1,0 +1,128 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'org.jetbrains.dokka' version '1.7.10'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 23
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    kotlin {
+        // for strict mode
+        explicitApi()
+
+        // for warning mode
+        explicitApiWarning()
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    // Logger
+    implementation 'com.orhanobut:logger:2.2.0'
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+
+    //Dokka
+    implementation "org.jetbrains.dokka:kotlin-as-java-plugin:1.7.10"
+
+    // Gson
+    implementation "com.google.code.gson:gson:2.8.7"
+}
+
+task copyLibs(type: Copy) {
+    from configurations.implementation
+    into 'libs'
+}
+
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'com.ecospend.paybybank-android'
+            artifactId 'paybybank-android'
+            version '1.5.7'
+            artifact("$projectDir/build/outputs/aar/PayByBank-release.aar")
+        }
+    }
+
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://pkgs.dev.azure.com/ecospend/PaylinkMobileSDK/_packaging/PaylinkMobileSDK.Android/maven/v1'
+            credentials {
+                username "PaylinkMobileSDK.Android"
+                password vstsMavenAccessToken
+            }
+        }
+    }
+}
+
+configurations {
+    ktlint
+}
+dokkaHtml.configure {
+    dokkaSourceSets {
+        named("main") {
+            noAndroidSdkLink.set(false)
+        }
+    }
+}
+dependencies {
+    ktlint "com.pinterest:ktlint:0.44.0"
+    dokkaHtmlPlugin "org.jetbrains.dokka:kotlin-as-java-plugin:1.7.10"
+}
+task ktlint(type: JavaExec, group: "ktlint") {
+    description = "Check Kotlin code style."
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "src/**/*.kt"
+}
+
+check.dependsOn ktlint
+
+task ktlintFormat(type: JavaExec, group: "ktlint") {
+    description = "Fix Kotlin code style deviations."
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "src/**/*.kt"
+}
