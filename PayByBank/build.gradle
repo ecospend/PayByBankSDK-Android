@@ -11,8 +11,6 @@ android {
     defaultConfig {
         minSdk 23
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -74,28 +72,6 @@ task copyLibs(type: Copy) {
 }
 
 apply plugin: 'maven-publish'
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId 'com.ecospend.paybybank-android'
-            artifactId 'paybybank-android'
-            version '1.5.7'
-            artifact("$projectDir/build/outputs/aar/PayByBank-release.aar")
-        }
-    }
-
-    repositories {
-        mavenCentral()
-        maven {
-            url 'https://pkgs.dev.azure.com/ecospend/PaylinkMobileSDK/_packaging/PaylinkMobileSDK.Android/maven/v1'
-            credentials {
-                username "PaylinkMobileSDK.Android"
-                password vstsMavenAccessToken
-            }
-        }
-    }
-}
 
 configurations {
     ktlint
