@@ -10,6 +10,7 @@ import com.ecospend.paybybank.di.AppDI
 import com.ecospend.paybybank.di.clear
 import com.ecospend.paybybank.di.core.EcoDi
 import com.ecospend.paybybank.di.setup
+import com.ecospend.paylinksdk.app.PayByBankAuthentication
 
 object PayByBank {
     val payLink by lazy {
@@ -43,13 +44,11 @@ object PayByBank {
     }
 
     fun configure(
-        clientId: String,
-        clientSecret: String,
-        environment: PayByBankEnvironment
+        environment: PayByBankEnvironment,
+        authentication: PayByBankAuthentication
     ) = PayByBankState.Config
         .apply {
-            this.clientID = clientId
-            this.clientSecret = clientSecret
+            this.authentication = authentication
             this.environment = environment
         }
 

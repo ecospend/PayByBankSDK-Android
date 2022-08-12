@@ -181,23 +181,13 @@ class BulkPayment(
     private suspend fun auth(
         completion: (PayByBankResult?, PayByBankError?) -> Unit
     ): Boolean {
-        val clientID = PayByBankState.Config.clientID
-            ?: run {
-                completion(null, PayByBankError.NotConfigured)
-                return false
-            }
-        val clientSecret = PayByBankState.Config.clientSecret
+        PayByBankState.Config.authentication
             ?: run {
                 completion(null, PayByBankError.NotConfigured)
                 return false
             }
         return withContext(Dispatchers.IO) {
-            val response = iamRepository.connect(
-                IamTokenRequest(
-                    clientID = clientID,
-                    clientSecret = clientSecret
-                )
-            )
+            val response = iamRepository.connect()
             return@withContext if (response?.accessToken.isNullOrBlank()) {
                 completion(null, PayByBankError.WrongPaylink("token error."))
                 false
