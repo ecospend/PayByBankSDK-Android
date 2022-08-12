@@ -7,7 +7,6 @@ import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentCreateRes
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentDeleteRequest
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentGetRequest
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentGetResponse
-import com.ecospend.paybybank.data.remote.model.paylink.request.IamTokenRequest
 import com.ecospend.paybybank.data.repository.BulkPaymentRepository
 import com.ecospend.paybybank.data.repository.IamRepository
 import com.ecospend.paybybank.shared.coroutine.Coroutine

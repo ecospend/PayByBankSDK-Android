@@ -2,7 +2,6 @@ package com.ecospend.paybybank.app.module.payment
 
 import android.app.Activity
 import com.ecospend.paybybank.app.PayByBankState
-import com.ecospend.paybybank.data.remote.model.paylink.request.IamTokenRequest
 import com.ecospend.paybybank.data.remote.model.payment.request.PaymentCheckURLRequest
 import com.ecospend.paybybank.data.remote.model.payment.request.PaymentCreateRefundRequest
 import com.ecospend.paybybank.data.remote.model.payment.request.PaymentCreateRequest

@@ -7,7 +7,6 @@ import com.ecospend.paybybank.data.remote.model.frPayment.FrPaymentCreateRespons
 import com.ecospend.paybybank.data.remote.model.frPayment.FrPaymentDeleteRequest
 import com.ecospend.paybybank.data.remote.model.frPayment.FrPaymentGetRequest
 import com.ecospend.paybybank.data.remote.model.frPayment.FrPaymentGetResponse
-import com.ecospend.paybybank.data.remote.model.paylink.request.IamTokenRequest
 import com.ecospend.paybybank.data.repository.FrPaymentRepository
 import com.ecospend.paybybank.data.repository.IamRepository
 import com.ecospend.paybybank.shared.coroutine.Coroutine
@@ -181,7 +180,7 @@ class FrPayment(
     private suspend fun auth(
         completion: (PayByBankResult?, PayByBankError?) -> Unit
     ): Boolean {
-       PayByBankState.Config.authentication
+        PayByBankState.Config.authentication
             ?: run {
                 completion(null, PayByBankError.NotConfigured)
                 return false

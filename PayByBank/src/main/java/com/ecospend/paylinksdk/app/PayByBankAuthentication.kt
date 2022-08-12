@@ -10,7 +10,7 @@ sealed class PayByBankAuthentication {
     // - Parameters:
     //     - clientID: The **Client ID** is created by Ecospend when your organization is registered with us.
     //     - clientSecret: The **Client Secret** is a security key that your administrator should create from the Management Console. This is not visible to or accessible  by the Ecospend team. Therefore, you should store it safely.
-   data class ClientCredentials(var clientID: String, var clientSecret: String) : PayByBankAuthentication()
+    data class ClientCredentials(var clientID: String, var clientSecret: String) : PayByBankAuthentication()
 
     // Token-Based Authentication.
     //
@@ -19,5 +19,5 @@ sealed class PayByBankAuthentication {
     // - Parameters:
     //     - accessToken: The **Access Token** is required for all subsequent requests to the API. You should keep it safe and secure during its lifetime. The lifetime is configurable.
     //     - type: Type of token provided. Defaults to "Bearer"
-   data class  Token(var accessToken: String, var type: String = "Bearer") : PayByBankAuthentication()
+    data class Token(var accessToken: String, var type: String = "Bearer") : PayByBankAuthentication()
 }

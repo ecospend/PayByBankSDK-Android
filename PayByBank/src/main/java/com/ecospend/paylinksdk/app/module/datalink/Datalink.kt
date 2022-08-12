@@ -8,7 +8,6 @@ import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkGetCons
 import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkGetRequest
 import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkCreateResponse
 import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkGetResponse
-import com.ecospend.paybybank.data.remote.model.paylink.request.IamTokenRequest
 import com.ecospend.paybybank.data.repository.DatalinkRepository
 import com.ecospend.paybybank.data.repository.IamRepository
 import com.ecospend.paybybank.shared.coroutine.Coroutine
