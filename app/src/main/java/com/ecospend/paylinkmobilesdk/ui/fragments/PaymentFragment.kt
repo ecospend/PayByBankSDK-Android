@@ -8,15 +8,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.ecospend.paylinkmobilesdk.R
-import com.ecospend.paylinkmobilesdk.databinding.FragmentPaylinkBinding
-import com.ecospend.paylinkmobilesdk.databinding.FragmentPaymentBinding
 import com.ecospend.paybybank.app.PayByBank
 import com.ecospend.paybybank.data.remote.model.paylink.PayByBankAccountRequest
 import com.ecospend.paybybank.data.remote.model.paylink.PayByBankAccountType
 import com.ecospend.paybybank.data.remote.model.paylink.PayByBankCurrency
 import com.ecospend.paybybank.data.remote.model.payment.request.PaymentCreateRequest
 import com.ecospend.paybybank.shared.model.completion.PayByBankStatus
+import com.ecospend.paylinkmobilesdk.R
+import com.ecospend.paylinkmobilesdk.databinding.FragmentPaymentBinding
 
 class PaymentFragment : Fragment() {
 

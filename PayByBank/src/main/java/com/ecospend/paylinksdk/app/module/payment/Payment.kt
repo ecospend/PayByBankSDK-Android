@@ -2,7 +2,6 @@ package com.ecospend.paybybank.app.module.payment
 
 import android.app.Activity
 import com.ecospend.paybybank.app.PayByBankState
-import com.ecospend.paybybank.data.remote.model.paylink.request.IamTokenRequest
 import com.ecospend.paybybank.data.remote.model.payment.request.PaymentCheckURLRequest
 import com.ecospend.paybybank.data.remote.model.payment.request.PaymentCreateRefundRequest
 import com.ecospend.paybybank.data.remote.model.payment.request.PaymentCreateRequest
@@ -26,11 +25,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Payment API
+ * Note: Domestic instant payments, international payments, and scheduled payments are all accomplished from the same /payments endpoint.
+ * The payment type is automatically identified by our system depending whether the debtor and creditor accounts are from different countries (for international payments),
+ * or whether a value has been set for the scheduled_for parameter (meaning a scheduled payment).
+ */
 class Payment(
     private val iamRepository: IamRepository,
     private val paymentRepository: PaymentRepository
 ) {
 
+    /**
+     *  Opens bank application or bank website using with request model of payment
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property request: Request to create payment
+     *@property completion: It provides to handle result or error
+     */
     fun initiate(
         activity: Activity,
         request: PaymentCreateRequest,
@@ -43,6 +55,13 @@ class Payment(
         )
     }
 
+    /**
+     * Opens bank application or bank website using with `id` of payment
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property uniqueID: Unique id value of payment.
+     *@property completion: It provides to handle result or error
+     */
     fun open(
         activity: Activity,
         uniqueID: String,
@@ -55,6 +74,12 @@ class Payment(
         )
     }
 
+    /**
+     *  Opens bank application or bank website using with request model of payment
+     *
+     *@property request: Request to create payment.
+     *@property completion: It provides to handle result or error
+     */
     fun createPayment(
         request: PaymentCreateRequest,
         completion: (PaymentCreateResponse?, PayByBankError?) -> Unit
@@ -66,6 +91,12 @@ class Payment(
         Coroutine.cancel()
     }
 
+    /**
+     *  Gets payments.
+     *
+     *@property request:  Request to list of payments with filters.
+     *@property completion: It provides to handle result or error
+     */
     fun listPayments(
         request: PaymentListRequest,
         completion: (PaymentListResponse?, PayByBankError?) -> Unit
@@ -77,6 +108,12 @@ class Payment(
         Coroutine.cancel()
     }
 
+    /**
+     *  Gets payment detail.
+     *
+     *@property request: : Request to get payment detail with id.
+     *@property completion: It provides to handle result or error
+     */
     fun getPayment(
         request: PaymentGetRequest,
         completion: (PaymentGetResponse?, PayByBankError?) -> Unit
@@ -88,6 +125,16 @@ class Payment(
         Coroutine.cancel()
     }
 
+    /**
+     * Checks availability of payment url.
+     *
+     * 'url-consumed' endpoint checks whether the bank's payment url has been visited by the PSU.
+     * Return's true if the PSU has logged in to the banking system for this payment.
+     * In such case either wait for the PSU to finish the journey, or create a new payment.
+     *
+     *@property request: Request to check availability of payment url.
+     *@property completion: It provides to handle result or error
+     */
     fun checkPaymentURL(
         request: PaymentCheckURLRequest,
         completion: (PaymentCheckURLResponse?, PayByBankError?) -> Unit
@@ -99,6 +146,12 @@ class Payment(
         Coroutine.cancel()
     }
 
+    /**
+     *  Creates refund for given payment
+     *
+     *@property request: Request to create refund for given payment.
+     *@property completion: It provides to handle result or error
+     */
     fun createRefund(
         request: PaymentCreateRefundRequest,
         completion: (PaymentCreateResponse?, PayByBankError?) -> Unit

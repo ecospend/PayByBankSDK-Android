@@ -8,7 +8,6 @@ import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkGetCons
 import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkGetRequest
 import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkCreateResponse
 import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkGetResponse
-import com.ecospend.paybybank.data.remote.model.paylink.request.IamTokenRequest
 import com.ecospend.paybybank.data.repository.DatalinkRepository
 import com.ecospend.paybybank.data.repository.IamRepository
 import com.ecospend.paybybank.shared.coroutine.Coroutine
@@ -23,11 +22,22 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Datalink API
+ * Note: Datalink is a whitelabel consent journey solution provided by Ecospend that downsizes the required implementation for the consent journey to a single endpoint integration. By making a single call to /datalink endpoint you will be able to initiate the consent journey.
+ */
 class Datalink(
     private val iamRepository: IamRepository,
     private val datalinkRepository: DatalinkRepository
 ) {
 
+    /**
+     *  Opens webview using with `uniqueID` of datalink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property uniqueID: Unique id value of datalink.
+     *@property completion: It provides to handle result or error
+     */
     fun open(
         activity: Activity,
         uniqueID: String,
@@ -40,6 +50,13 @@ class Datalink(
         )
     }
 
+    /**
+     *  Opens webview using with request model of datalink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property request: Request to create datalink.
+     *@property completion: It provides to handle result or error
+     */
     fun initiate(
         activity: Activity,
         request: DatalinkCreateRequest,
@@ -52,6 +69,12 @@ class Datalink(
         )
     }
 
+    /**
+     *   Creates Datalink
+     *
+     *@property request: Request to create Datalink
+     *@property completion: It provides to handle result or error
+     */
     fun createDatalink(
         request: DatalinkCreateRequest,
         completion: (DatalinkCreateResponse?, PayByBankError?) -> Unit
@@ -63,6 +86,12 @@ class Datalink(
         Coroutine.cancel()
     }
 
+    /**
+     *  Gets Datalink detail
+     *
+     *@property request: Request to get Datalink detail
+     *@property completion: It provides to handle result or error
+     */
     fun getDatalink(
         request: DatalinkGetRequest,
         completion: (DatalinkGetResponse?, PayByBankError?) -> Unit
@@ -74,6 +103,12 @@ class Datalink(
         Coroutine.cancel()
     }
 
+    /**
+     * Deletes the Datalink with given id.
+     *
+     *@property request: Request to soft delete Datalink
+     *@property completion: It provides to handle result or error
+     */
     fun deleteDatalink(
         request: DatalinkDeleteRequest,
         completion: (Boolean?, PayByBankError?) -> Unit
@@ -86,6 +121,12 @@ class Datalink(
         Coroutine.cancel()
     }
 
+    /**
+     *  Returns datalink with given `consentID`
+     *
+     *@property request:  Request to get Datalink of a consent
+     *@property completion: It provides to handle result or error
+     */
     fun getDatalinkOfConsent(
         request: DatalinkGetConsentDatalinkRequest,
         completion: (DatalinkGetResponse?, PayByBankError?) -> Unit

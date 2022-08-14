@@ -8,15 +8,23 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.ecospend.paylinkmobilesdk.R
-import com.ecospend.paylinkmobilesdk.databinding.FragmentDatalinkBinding
 import com.ecospend.paybybank.app.PayByBank
 import com.ecospend.paybybank.data.remote.model.PayByBankNotificationOptionsRequest
-import com.ecospend.paybybank.data.remote.model.datalink.*
+import com.ecospend.paybybank.data.remote.model.datalink.CategoryAggregationParameters
+import com.ecospend.paybybank.data.remote.model.datalink.DatalinkOptions
+import com.ecospend.paybybank.data.remote.model.datalink.DistrubutionPeriod
+import com.ecospend.paybybank.data.remote.model.datalink.Filters
+import com.ecospend.paybybank.data.remote.model.datalink.FinancialMultiParameters
+import com.ecospend.paybybank.data.remote.model.datalink.FinancialReport
+import com.ecospend.paybybank.data.remote.model.datalink.FinancialReportParameters
+import com.ecospend.paybybank.data.remote.model.datalink.OutputSettings
+import com.ecospend.paybybank.data.remote.model.datalink.VerificationParameters
 import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkCreateRequest
 import com.ecospend.paybybank.data.remote.model.datalink.response.ConsentPermission
 import com.ecospend.paybybank.data.remote.model.paylink.PayByBankCurrency
 import com.ecospend.paybybank.shared.model.completion.PayByBankStatus
+import com.ecospend.paylinkmobilesdk.R
+import com.ecospend.paylinkmobilesdk.databinding.FragmentDatalinkBinding
 
 class DatalinkFragment : Fragment() {
 

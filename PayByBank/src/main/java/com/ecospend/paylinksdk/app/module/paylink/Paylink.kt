@@ -2,7 +2,6 @@ package com.ecospend.paybybank.app.module.paylink
 
 import android.app.Activity
 import com.ecospend.paybybank.app.PayByBankState
-import com.ecospend.paybybank.data.remote.model.paylink.request.IamTokenRequest
 import com.ecospend.paybybank.data.remote.model.paylink.request.PaylinkCreateRequest
 import com.ecospend.paybybank.data.remote.model.paylink.request.PaylinkDeleteRequest
 import com.ecospend.paybybank.data.remote.model.paylink.request.PaylinkGetRequest
@@ -22,11 +21,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Paylink API
+ * The Ecospend Gateway presents Paylink as an alternative and easier form of Open Banking Instant Payment solution.
+ * Paylink provides you the option of downsizing the development effort for a PIS journey to a single endpoint integration.
+ * Paylink undertakes all of interaction in the payment user journey with your branding on display.
+ */
 class Paylink(
     private val iamRepository: IamRepository,
     private val paylinkRepository: PaylinkRepository
 ) {
 
+    /**
+     *  Opens bank application or bank website using with request model of payment
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property request: Request to create paylink
+     *@property completion: It provides to handle result or error
+     */
     fun initiate(
         activity: Activity,
         request: PaylinkCreateRequest,
@@ -39,6 +51,13 @@ class Paylink(
         )
     }
 
+    /**
+     *  Opens webview using with `uniqueID` of paylink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property uniqueID:  Unique id value of paylink.
+     *@property completion: It provides to handle result or error
+     */
     fun open(
         activity: Activity,
         uniqueID: String,
@@ -51,6 +70,12 @@ class Paylink(
         )
     }
 
+    /**
+     * Creates Paylink
+     *
+     *@property request: Request to create Paylink
+     *@property completion: It provides to handle result or error
+     */
     fun createPaylink(
         request: PaylinkCreateRequest,
         completion: (PaylinkCreateResponse?, PayByBankError?) -> Unit
@@ -62,6 +87,12 @@ class Paylink(
         Coroutine.cancel()
     }
 
+    /**
+     * Creates Paylink
+     *
+     *@property request: Request to create Paylink
+     *@property completion: It provides to handle result or error
+     */
     fun getPaylink(
         request: PaylinkGetRequest,
         completion: (PaylinkGetResponse?, PayByBankError?) -> Unit
@@ -73,6 +104,12 @@ class Paylink(
         Coroutine.cancel()
     }
 
+    /**
+     * Creates Paylink
+     *
+     *@property request: Request to create Paylink
+     *@property completion: It provides to handle result or error
+     */
     fun deActivatePaylink(
         request: PaylinkDeleteRequest,
         completion: (Boolean, PayByBankError?) -> Unit

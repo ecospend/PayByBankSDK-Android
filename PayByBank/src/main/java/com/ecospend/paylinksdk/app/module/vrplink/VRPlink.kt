@@ -2,7 +2,6 @@ package com.ecospend.paybybank.app.module.vrplink
 
 import android.app.Activity
 import com.ecospend.paybybank.app.PayByBankState
-import com.ecospend.paybybank.data.remote.model.paylink.request.IamTokenRequest
 import com.ecospend.paybybank.data.remote.model.vrplink.request.VRPlinkCreateRequest
 import com.ecospend.paybybank.data.remote.model.vrplink.request.VRPlinkDeleteRequest
 import com.ecospend.paybybank.data.remote.model.vrplink.request.VRPlinkGetRecordsRequest
@@ -24,11 +23,23 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * VRPlink (Variable Recurring Payments) API
+ * Note: Variable Recurring Payments (VRPs) let customers safely connect authorised payments providers to their bank account so that they can make payments on the customer’s behalf,
+ * in line with agreed limits. VRPs offer more control and transparency than existing alternatives, such as Direct Debit payments.
+ */
 class VRPlink(
     private val iamRepository: IamRepository,
     private val vrPlinkRepository: VRPlinkRepository
 ) {
 
+    /**
+     * Opens webview using with request model of VRPlink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property request: Request to create VRPlink
+     *@property completion: It provides to handle result or error
+     */
     fun initiate(
         activity: Activity,
         request: VRPlinkCreateRequest,
@@ -41,6 +52,13 @@ class VRPlink(
         )
     }
 
+    /**
+     *  Opens webview using with `uniqueID` of VRPlink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property uniqueID: Unique id value of VRPlink.
+     *@property completion: It provides to handle result or error
+     */
     fun open(
         activity: Activity,
         uniqueID: String,
@@ -53,6 +71,12 @@ class VRPlink(
         )
     }
 
+    /**
+     *  Creates VRPlink
+     *
+     *@property request: Request to create VRPlink
+     *@property completion: It provides to handle result or error
+     */
     fun createVRPlink(
         request: VRPlinkCreateRequest,
         completion: (VRPlinkCreateResponse?, PayByBankError?) -> Unit
@@ -64,6 +88,12 @@ class VRPlink(
         Coroutine.cancel()
     }
 
+    /**
+     *   Gets VRPlink detail
+     *
+     *@property request: Request to get VRPlink detail
+     *@property completion: It provides to handle result or error
+     */
     fun getVRPlink(
         request: VRPlinkGetRequest,
         completion: (VRPlinkGetResponse?, PayByBankError?) -> Unit
@@ -75,6 +105,12 @@ class VRPlink(
         Coroutine.cancel()
     }
 
+    /**
+     *   Soft deletes the VRPlink with given id.
+     *
+     *@property request: Request to deactivate VRPlink
+     *@property completion: It provides to handle result or error
+     */
     fun deactivateVRPlink(
         request: VRPlinkDeleteRequest,
         completion: (Boolean?, PayByBankError?) -> Unit
@@ -86,6 +122,12 @@ class VRPlink(
         Coroutine.cancel()
     }
 
+    /**
+     *  Returns records of VRPlink
+     *
+     *@property request: Request to get VRPlink records
+     *@property completion: It provides to handle result or error
+     */
     fun getVRPlinkRecords(
         request: VRPlinkGetRecordsRequest,
         completion: (List<VRPlinkGetRecordsResponse>?, PayByBankError?) -> Unit
