@@ -5,7 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.ecospend.paylinkmobilesdk.R
 import com.ecospend.paylinkmobilesdk.ui.adapter.ViewPagerAdapter
-import com.ecospend.paylinkmobilesdk.ui.fragments.*
+import com.ecospend.paylinkmobilesdk.ui.fragments.BulkPaymentFragment
+import com.ecospend.paylinkmobilesdk.ui.fragments.DatalinkFragment
+import com.ecospend.paylinkmobilesdk.ui.fragments.FrPaymentFragment
+import com.ecospend.paylinkmobilesdk.ui.fragments.PaylinkFragment
+import com.ecospend.paylinkmobilesdk.ui.fragments.PaymentFragment
+import com.ecospend.paylinkmobilesdk.ui.fragments.VRPlinkFragment
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {

@@ -21,11 +21,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * FrPayment (Standing Order) API
+ * A Standing Order is an instruction that an account holder gives to their bank to make payments of a fixed amount at regular intervals.
+ * Payments are made automatically by the bank on a defined schedule (e.g. weekly or monthly) on an ongoing basis, unless a specified condition has been met, such as an end-date being reached or a set number of payments having been made.
+ * Standing Orders can only be created, amended or cancelled by the account holder, typically by using their online or telephone banking service. They are most commonly used for recurring payments where the amount stays the same, such as rent payments, subscription services or regular account top-ups.
+ */
 class FrPayment(
     private val iamRepository: IamRepository,
     private val frPaymentRepository: FrPaymentRepository
 ) {
 
+    /**
+     *  Opens webview using with request model of FrPayment
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property request: Request to create FrPayment
+     *@property completion: It provides to handle result or error
+     */
     fun initiate(
         activity: Activity,
         request: FrPaymentCreateRequest,
@@ -38,6 +51,13 @@ class FrPayment(
         )
     }
 
+    /**
+     *  Opens webview using with `uniqueID` of FrPayment
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property uniqueID: Unique id value of FrPayment.
+     *@property completion: It provides to handle result or error
+     */
     fun open(
         activity: Activity,
         uniqueID: String,
@@ -50,6 +70,12 @@ class FrPayment(
         )
     }
 
+    /**
+     * Creates FrPayment
+     *
+     *@property request: Request to create FrPayment
+     *@property completion: It provides to handle result or error
+     */
     fun createFrPayment(
         request: FrPaymentCreateRequest,
         completion: (FrPaymentCreateResponse?, PayByBankError?) -> Unit
@@ -61,6 +87,12 @@ class FrPayment(
         Coroutine.cancel()
     }
 
+    /**
+     *  Gets FrPayment detail
+     *
+     *@property request: Request to get FrPayment detail
+     *@property completion: It provides to handle result or error
+     */
     fun getFrPayment(
         request: FrPaymentGetRequest,
         completion: (FrPaymentGetResponse?, PayByBankError?) -> Unit
@@ -72,6 +104,12 @@ class FrPayment(
         Coroutine.cancel()
     }
 
+    /**
+     *  Soft deletes FrPayment with given id
+     *
+     *@property request: Request to get FrPayment detail
+     *@property completion: It provides to handle result or error
+     */
     fun deactivateFrPayment(
         request: FrPaymentDeleteRequest,
         completion: (Boolean, PayByBankError?) -> Unit

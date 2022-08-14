@@ -8,17 +8,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.ecospend.paylinkmobilesdk.R
-import com.ecospend.paylinkmobilesdk.databinding.FragmentBulkpaymentBinding
-import com.ecospend.paylinkmobilesdk.databinding.FragmentPaymentBinding
 import com.ecospend.paybybank.app.PayByBank
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentCreateRequest
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentPaylinkEntry
 import com.ecospend.paybybank.data.remote.model.paylink.PayByBankAccountRequest
 import com.ecospend.paybybank.data.remote.model.paylink.PayByBankAccountType
 import com.ecospend.paybybank.data.remote.model.paylink.PayByBankCurrency
-import com.ecospend.paybybank.data.remote.model.payment.request.PaymentCreateRequest
 import com.ecospend.paybybank.shared.model.completion.PayByBankStatus
+import com.ecospend.paylinkmobilesdk.R
+import com.ecospend.paylinkmobilesdk.databinding.FragmentBulkpaymentBinding
 
 class BulkPaymentFragment : Fragment() {
 
@@ -33,7 +31,6 @@ class BulkPaymentFragment : Fragment() {
         handlePayRequest()
         return binding.root
     }
-
 
     private fun handlePayRequest() {
         binding.buttonPay.setOnClickListener {
