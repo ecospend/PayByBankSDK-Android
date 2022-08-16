@@ -2,7 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'org.jetbrains.dokka' version '1.7.10'
+    id 'org.jetbrains.dokka'
 }
 
 android {
@@ -78,9 +78,15 @@ configurations {
 }
 dokkaHtml.configure {
     dokkaSourceSets {
+        suppressInheritedMembers.set(true)
         named("main") {
             noAndroidSdkLink.set(false)
+            includeNonPublic.set(false)
+            skipEmptyPackages.set(true)
+            suppress.set(false)
+            suppressGeneratedFiles.set(false)
         }
+        // Use to include or exclude non public members
     }
 }
 dependencies {
