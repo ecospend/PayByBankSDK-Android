@@ -2,11 +2,14 @@ package com.ecospend.paybybank.app.module.bulkPayment
 
 import android.app.Activity
 import com.ecospend.paybybank.app.PayByBankState
+import com.ecospend.paybybank.app.module.datalink.DatalinkExecuteType
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentCreateRequest
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentCreateResponse
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentDeleteRequest
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentGetRequest
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentGetResponse
+import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkGetResponse
+import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkModel
 import com.ecospend.paybybank.data.repository.BulkPaymentRepository
 import com.ecospend.paybybank.data.repository.IamRepository
 import com.ecospend.paybybank.shared.coroutine.Coroutine
@@ -42,6 +45,25 @@ class BulkPayment(
         execute(
             activity = activity,
             type = BulkPaymentExecuteType.Open(uniqueID),
+            completion = completion
+        )
+    }
+
+    /**
+     *  Opens webview using with `url` of BulkPayment
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property bulkPaymentUrl:  Unique id value of paylink.
+     *@property completion: It provides to handle result or error
+     */
+    fun openUrl(
+        activity: Activity,
+        bulkPaymentUrl: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) {
+        execute(
+            activity = activity,
+            type = BulkPaymentExecuteType.OpenUrl(bulkPaymentUrl),
             completion = completion
         )
     }
@@ -168,6 +190,11 @@ class BulkPayment(
                     bulkPaymentRepository.getBulkPayment(
                         BulkPaymentGetRequest(type.uniqueID)
                     )
+                }
+            }
+            is BulkPaymentExecuteType.OpenUrl -> {
+                withContext(Dispatchers.IO) {
+                    BulkPaymentGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = "type.url")
                 }
             }
             is BulkPaymentExecuteType.Initiate -> {

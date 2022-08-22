@@ -9,34 +9,34 @@ data class FrPaymentGetResponse(
      * Unique id value of FrPayment.
      */
     @SerializedName("unique_id")
-    val uniqueID: String?,
+    val uniqueID: String? = null,
 
     /**
      * FrPayment amount in decimal format.
      */
-    val amount: Float?,
+    val amount: Float? = null,
 
     /**
      * Payment reference that will be displayed on the bank statement. 18 characters MAX.
      */
-    val reference: String?,
+    val reference: String? = null,
 
     /**
      * Description for the payment. 255 character MAX.
      */
-    val description: String?,
+    val description: String? = null,
 
     /**
      * The URL of the Tenant that the PSU will be redirected at the end of the FrPayment journey.
      * This URL must be registered by your Admin on the Ecospend Management Console, prior to being used in the API calls.
      */
     @SerializedName("redirect_url")
-    val redirectURL: String?,
+    val redirectURL: String? = null,
 
     /**
      * The URL to open bank selection screen
      */
-    val url: String?,
+    val url: String? = null,
 
     /**
      * Unique identification string assigned to the bank by our system.
@@ -44,13 +44,13 @@ data class FrPaymentGetResponse(
      * If value is not set, FrPayment will display the PSU a bank selection screen.
      */
     @SerializedName("bank_id")
-    val bankID: String?,
+    val bankID: String? = null,
 
     /**
      * If you are providing our Payment service to your own business clients (merchants), then you should set the Id of your merchant.
      */
     @SerializedName("merchant_id")
-    val merchantID: String?,
+    val merchantID: String? = null,
 
     /**
      * The Id of the end-user.
@@ -58,51 +58,51 @@ data class FrPaymentGetResponse(
      * If you are providing this service to businesses, then you should assign the Id of that merchant’s user.
      */
     @SerializedName("merchant_user_id")
-    val merchantUserID: String?,
+    val merchantUserID: String? = null,
 
     /**
      * The Creditor Account model
      */
     @SerializedName("creditor_account")
-    val creditorAccount: PayByBankAccountResponse?,
+    val creditorAccount: PayByBankAccountResponse? = null,
 
     /**
      * The Debtor Account model
      */
     @SerializedName("debtor_account")
-    val debtorAccount: PayByBankAccountResponse?,
+    val debtorAccount: PayByBankAccountResponse? = null,
 
     /**
      * The FrPayment Options model
      */
     @SerializedName("fr_payment_options")
-    val frPaymentOptions: FrPaymentOptionsResponse?,
+    val frPaymentOptions: FrPaymentOptionsResponse? = null,
 
     /**
      * Date and time of the first payment in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      * Warning: This date must be a work day.
      */
     @SerializedName("first_payment_date")
-    val firstPaymentDate: String?,
+    val firstPaymentDate: String? = null,
 
     /**
      * Number of total payments being set with this standing order.
      */
     @SerializedName("number_of_payments")
-    val numberOfPayments: Int?,
+    val numberOfPayments: Int? = null,
 
     /**
      * Period of FrPayment
      * Note: Enum: "Weekly" "Monthly" "Yearly"
      */
-    val period: FrPaymentPeriod?,
+    val period: FrPaymentPeriod? = null,
 
     /**
      * The user has the right to change the FrPayment related additional parameters
      * Note: Defaults to false.
      */
     @SerializedName("allow_frp_customer_changes")
-    val allowFrpCustomerChanges: Boolean?,
+    val allowFrpCustomerChanges: Boolean? = null,
 )
 
 data class FrPaymentOptionsResponse(

@@ -10,47 +10,47 @@ data class BulkPaymentGetResponse(
     /**
      * The URL to open bank selection screen
      */
-    val url: String?,
+    val url: String? = null,
 
     /**
      * Id of payment.
      */
     @SerializedName("payment_id")
-    val paymentID: String?,
+    val paymentID: String? = null,
 
     /**
      * A system assigned unique identification for the Bulk Payment Paylink.
      */
     @SerializedName("unique_id")
-    val uniqueID: String?,
+    val uniqueID: String? = null,
 
     /**
      * Status of the Bulk Payment Paylink.
      * Note: Enum: "Initial" "AwaitingAuthorization" "Authorised" "Verified" "Completed" "Canceled" "Failed" "Rejected" "Abandoned"
      */
-    val status: BulkPaymentStatus?,
+    val status: BulkPaymentStatus? = null,
 
     /**
      * Payment reference that will be displayed on the bank statement. 18 characters MAX.
      */
-    val reference: String?,
+    val reference: String? = null,
 
     /**
      * Bulk payment reference that will be displayed on the bank statement. 18 characters MAX.
      */
     @SerializedName("file_reference")
-    val fileReference: String?,
+    val fileReference: String? = null,
 
     /**
      * Description for the payment. 255 character MAX.
      */
-    val description: String?,
+    val description: String? = null,
 
     /**
      * The URL of the Tenant that the PSU will be redirected at the end of payment process.
      */
     @SerializedName("redirect_url")
-    val redirectURL: String?,
+    val redirectURL: String? = null,
 
     /**
      * Unique identification string assigned to the bank by our system.
@@ -58,13 +58,13 @@ data class BulkPaymentGetResponse(
      * If value is not set, Paylink will display the PSU a bank selection screen.
      */
     @SerializedName("bank_id")
-    val bankID: String?,
+    val bankID: String? = null,
 
     /**
      * If you are providing our Payment service to your own business clients (merchants), then you should set the Id of your merchant.
      */
     @SerializedName("merchant_id")
-    val merchantID: String?,
+    val merchantID: String? = null,
 
     /**
      * The Id of the end-user.
@@ -72,42 +72,42 @@ data class BulkPaymentGetResponse(
      * If you are providing this service to businesses, then you should assign the Id of that merchant’s user.
      */
     @SerializedName("merchant_user_id")
-    val merchantUserID: String?,
+    val merchantUserID: String? = null,
 
     /**
      * It is the account from which the payment will be taken.
      */
     @SerializedName("debtor_account")
-    val debtorAccount: PayByBankAccountResponse?,
+    val debtorAccount: PayByBankAccountResponse? = null,
 
     /**
      * The Paylink Options model
      */
     @SerializedName("paylink_options")
-    val paylinkOptions: BulkPaymentPaylinkOptionsResponse?,
+    val paylinkOptions: BulkPaymentPaylinkOptionsResponse? = null,
 
     /**
      * The Notification Options model
      */
     @SerializedName("notification_options")
-    val notificationOptions: PayByBankNotificationOptionsResponse?,
+    val notificationOptions: PayByBankNotificationOptionsResponse? = null,
 
     /**
      * The Payment Options model
      */
     @SerializedName("payment_options")
-    val paymentOptions: BulkPaymentOptionsResponse?,
+    val paymentOptions: BulkPaymentOptionsResponse? = null,
 
     /**
      * The Limit Options model
      */
     @SerializedName("limit_options")
-    val limitOptions: BulkPaymentLimitOptionsResponse?,
+    val limitOptions: BulkPaymentLimitOptionsResponse? = null,
 
     /**
      * Payments object for individual payments for the bulk payment.
      */
-    val payments: List<BulkPaymentPaylinkEntryResponse>?
+    val payments: List<BulkPaymentPaylinkEntryResponse>? = null
 )
 
 enum class BulkPaymentStatus : Serializable {

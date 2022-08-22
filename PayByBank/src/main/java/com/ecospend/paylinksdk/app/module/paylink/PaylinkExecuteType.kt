@@ -4,5 +4,6 @@ import com.ecospend.paybybank.data.remote.model.paylink.request.PaylinkCreateReq
 
 sealed class PaylinkExecuteType {
     class Open(val paylinkID: String) : PaylinkExecuteType()
+    class OpenUrl(val url: String) : PaylinkExecuteType()
     class Initiate(val paylinkCreateRequest: PaylinkCreateRequest) : PaylinkExecuteType()
 }

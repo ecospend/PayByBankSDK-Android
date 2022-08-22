@@ -2,6 +2,8 @@ package com.ecospend.paybybank.app.module.vrplink
 
 import android.app.Activity
 import com.ecospend.paybybank.app.PayByBankState
+import com.ecospend.paybybank.app.module.paylink.PaylinkExecuteType
+import com.ecospend.paybybank.data.remote.model.paylink.response.PaylinkGetResponse
 import com.ecospend.paybybank.data.remote.model.vrplink.request.VRPlinkCreateRequest
 import com.ecospend.paybybank.data.remote.model.vrplink.request.VRPlinkDeleteRequest
 import com.ecospend.paybybank.data.remote.model.vrplink.request.VRPlinkGetRecordsRequest
@@ -67,6 +69,25 @@ class VRPlink(
         execute(
             activity = activity,
             type = VRPlinkExecuteType.Open(uniqueID),
+            completion = completion
+        )
+    }
+
+    /**
+     *  Opens webview using with `url` of vrpLink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property vrpUrl:  Unique id value of vrpLink.
+     *@property completion: It provides to handle result or error
+     */
+    fun openUrl(
+        activity: Activity,
+        vrpUrl: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) {
+        execute(
+            activity = activity,
+            type = VRPlinkExecuteType.OpenUrl(vrpUrl),
             completion = completion
         )
     }
@@ -195,6 +216,11 @@ class VRPlink(
                     vrPlinkRepository.getVRPlink(
                         VRPlinkGetRequest(type.id)
                     )
+                }
+            }
+            is VRPlinkExecuteType.OpenUrl -> {
+                withContext(Dispatchers.IO) {
+                    VRPlinkGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = "type.url")
                 }
             }
             is VRPlinkExecuteType.Initiate -> {
