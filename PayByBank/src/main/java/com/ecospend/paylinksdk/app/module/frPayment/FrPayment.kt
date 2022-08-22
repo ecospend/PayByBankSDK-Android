@@ -2,11 +2,13 @@ package com.ecospend.paybybank.app.module.frPayment
 
 import android.app.Activity
 import com.ecospend.paybybank.app.PayByBankState
+import com.ecospend.paybybank.app.module.paylink.PaylinkExecuteType
 import com.ecospend.paybybank.data.remote.model.frPayment.FrPaymentCreateRequest
 import com.ecospend.paybybank.data.remote.model.frPayment.FrPaymentCreateResponse
 import com.ecospend.paybybank.data.remote.model.frPayment.FrPaymentDeleteRequest
 import com.ecospend.paybybank.data.remote.model.frPayment.FrPaymentGetRequest
 import com.ecospend.paybybank.data.remote.model.frPayment.FrPaymentGetResponse
+import com.ecospend.paybybank.data.remote.model.paylink.response.PaylinkGetResponse
 import com.ecospend.paybybank.data.repository.FrPaymentRepository
 import com.ecospend.paybybank.data.repository.IamRepository
 import com.ecospend.paybybank.shared.coroutine.Coroutine
@@ -66,6 +68,25 @@ class FrPayment(
         execute(
             activity = activity,
             type = FrPaymentExecuteType.Open(uniqueID),
+            completion = completion
+        )
+    }
+
+    /**
+     *  Opens webview using with `url` of Frplink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property frpUrl:  Unique id value of paylink.
+     *@property completion: It provides to handle result or error
+     */
+    fun openUrl(
+        activity: Activity,
+        frpUrl: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) {
+        execute(
+            activity = activity,
+            type = FrPaymentExecuteType.OpenUrl(frpUrl),
             completion = completion
         )
     }
@@ -178,6 +199,11 @@ class FrPayment(
                     frPaymentRepository.getFrPayment(
                         FrPaymentGetRequest(type.uniqueID)
                     )
+                }
+            }
+            is FrPaymentExecuteType.OpenUrl -> {
+                withContext(Dispatchers.IO) {
+                    FrPaymentGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = "type.url")
                 }
             }
             is FrPaymentExecuteType.Initiate -> {

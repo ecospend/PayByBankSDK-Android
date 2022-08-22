@@ -12,13 +12,13 @@ data class DatalinkGetResponse(
      * The URL of the Tenant that the PSU will be redirected at the end of data access process.
      */
     @SerializedName("redirect_url")
-    val redirectURL: String?,
+    val redirectURL: String? = null,
 
     /**
      * If you are providing our Payment service to your own business clients (merchants), then you should set the Id of your merchant.
      */
     @SerializedName("merchant_id")
-    val merchantId: String?,
+    val merchantId: String? = null,
 
     /**
      * The Id of the end-user.
@@ -26,26 +26,26 @@ data class DatalinkGetResponse(
      * If you are providing this service to businesses, then you should assign the Id of that merchant’s user.
      */
     @SerializedName("merchant_user_id")
-    val merchantUserId: String?,
+    val merchantUserId: String? = null,
 
     /**
      * Permissions that determine which data is fetched.
      */
-    val permissions: List<ConsentPermission>?,
+    val permissions: List<ConsentPermission>? = null,
 
     @SerializedName("datalink_options")
-    val datalinkOptions: DatalinkOptions?,
+    val datalinkOptions: DatalinkOptions? = null,
 
     @SerializedName("notification_options")
-    val notificationOptions: PayByBankNotificationOptionsRequest?,
+    val notificationOptions: PayByBankNotificationOptionsRequest? = null,
 
     @SerializedName("financial_report")
-    val financialReport: FinancialReport?,
+    val financialReport: FinancialReport? = null,
 
     @SerializedName("datalink")
-    val datalink: DatalinkModel?,
+    val datalink: DatalinkModel? = null,
 
-    val consents: List<ConsentModel>?
+    val consents: List<ConsentModel>? = null
 ) : Serializable
 
 data class ConsentModel(
@@ -154,22 +154,22 @@ data class DatalinkModel(
      * This value is also a part of the URL.
      */
     @SerializedName("unique_id")
-    val uniqueID: String?,
+    val uniqueID: String? = null,
 
     /**
      * Unique Datalink URL that you will need to redirect PSU in order the data access consent to proceed.
      */
-    val url: String?,
+    val url: String? = null,
 
     /**
      * Base64 encoded QRCode image data that represents Datalink URL.
      */
     @SerializedName("qr_code")
-    val qrCode: String?,
+    val qrCode: String? = null,
 
     /**
      * Expiry date of the link.
      */
     @SerializedName("expire_date")
-    val expireDate: String?,
+    val expireDate: String? = null,
 ) : Serializable

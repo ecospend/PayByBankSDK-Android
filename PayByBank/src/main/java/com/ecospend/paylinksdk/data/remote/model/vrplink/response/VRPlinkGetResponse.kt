@@ -14,28 +14,28 @@ data class VRPlinkGetResponse(
      * Unique id value of paylink.
      */
     @SerializedName("unique_id")
-    val uniqueID: String?,
+    val uniqueID: String? = null,
 
     /**
      * Payment reference that will be displayed on the bank statement. 18 characters MAX.
      */
-    val reference: String?,
+    val reference: String? = null,
 
     /**
      * Description for the payment. 255 character MAX.
      */
-    val description: String?,
+    val description: String? = null,
 
     /**
      * The URL of the Tenant that the PSU will be redirected at the end of payment process.
      */
     @SerializedName("redirect_url")
-    val redirectURL: String?,
+    val redirectURL: String? = null,
 
     /**
      * The URL to open bank selection screen
      */
-    val url: String?,
+    val url: String? = null,
 
     /**
      * Unique identification string assigned to the bank by our system.
@@ -43,13 +43,13 @@ data class VRPlinkGetResponse(
      * If value is not set, Paylink will display the PSU a bank selection screen.
      */
     @SerializedName("bank_id")
-    val bankID: String?,
+    val bankID: String? = null,
 
     /**
      * If you are providing our Payment service to your own business clients (merchants), then you should set the Id of your merchant.
      */
     @SerializedName("merchant_id")
-    val merchantID: String?,
+    val merchantID: String? = null,
 
     /**
      * The Id of the end-user.
@@ -57,73 +57,73 @@ data class VRPlinkGetResponse(
      * If you are providing this service to businesses, then you should assign the Id of that merchant’s user.
      */
     @SerializedName("merchant_user_id")
-    val merchantUserID: String?,
+    val merchantUserID: String? = null,
 
     /**
      * It determines which type of payment operation will be executed by the Gateway.
      * Enum: "Sweeping" "Vrp"
      */
-    val type: VRPType?,
+    val type: VRPType? = null,
 
     /**
      * It determines which reason of payment operation will be executed by the Gateway.
      * Enum: "None" "PartyToParty" "BillPayment" "EcommerceGoods" "EcommerceServices" "Other"
      */
-    val reason: VRPReason?,
+    val reason: VRPReason? = null,
 
     /**
      * It provides to verify the account that will receive the payment
      */
     @SerializedName("verify_creditor_account")
-    val verifyCreditorAccount: Boolean?,
+    val verifyCreditorAccount: Boolean? = null,
 
     /**
      * It provides to verify the account from which the payment will be taken.
      */
     @SerializedName("verify_debtor_account")
-    val verifyDebtorAccount: Boolean?,
+    val verifyDebtorAccount: Boolean? = null,
 
     /**
      * It is the account that will receive the payment.
      */
     @SerializedName("creditor_account")
-    val creditorAccount: PayByBankAccountResponse?,
+    val creditorAccount: PayByBankAccountResponse? = null,
 
     /**
      * It is the account from which the payment will be taken.
      */
     @SerializedName("debtor_account")
-    val debtorAccount: PayByBankAccountResponse?,
+    val debtorAccount: PayByBankAccountResponse? = null,
 
     /**
      * The VRP Options model
      */
     @SerializedName("vrp_options")
-    val vrpOptions: VRPOptionsResponse?,
+    val vrpOptions: VRPOptionsResponse? = null,
 
     /**
      * The VRP Limit Options Options model
      */
     @SerializedName("limit_options")
-    val limitOptions: VRPLimitOptionsResponse?,
+    val limitOptions: VRPLimitOptionsResponse? = null,
 
     /**
      * The Notification Options model
      */
     @SerializedName("notification_options")
-    val notificationOptions: PayByBankNotificationOptionsResponse?,
+    val notificationOptions: PayByBankNotificationOptionsResponse? = null,
 
     /**
      * The VRPlink Options model
      */
     @SerializedName("vrplink_options")
-    val vrplinkOptions: VRPlinkOptionsResponse?,
+    val vrplinkOptions: VRPlinkOptionsResponse? = null,
 
     /**
      * The VRPlink Limit Options model
      */
     @SerializedName("vrplink_limit_options")
-    val vrplinkLimitOptions: VRPlinkLimitOptionsResponse?,
+    val vrplinkLimitOptions: VRPlinkLimitOptionsResponse? = null,
 )
 
 data class VRPLimitOptionsResponse(

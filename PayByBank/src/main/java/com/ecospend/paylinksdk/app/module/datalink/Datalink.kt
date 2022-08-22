@@ -2,12 +2,16 @@ package com.ecospend.paybybank.app.module.datalink
 
 import android.app.Activity
 import com.ecospend.paybybank.app.PayByBankState
+import com.ecospend.paybybank.app.module.frPayment.FrPaymentExecuteType
+import com.ecospend.paybybank.app.module.paylink.PaylinkExecuteType
 import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkCreateRequest
 import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkDeleteRequest
 import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkGetConsentDatalinkRequest
 import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkGetRequest
 import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkCreateResponse
 import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkGetResponse
+import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkModel
+import com.ecospend.paybybank.data.remote.model.paylink.response.PaylinkGetResponse
 import com.ecospend.paybybank.data.repository.DatalinkRepository
 import com.ecospend.paybybank.data.repository.IamRepository
 import com.ecospend.paybybank.shared.coroutine.Coroutine
@@ -46,6 +50,25 @@ class Datalink(
         execute(
             activity = activity,
             type = DatalinkExecuteType.Open(uniqueID),
+            completion = completion
+        )
+    }
+
+    /**
+     *  Opens webview using with `url` of Datalink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property datalinkUrl:  Unique id value of paylink.
+     *@property completion: It provides to handle result or error
+     */
+    fun openUrl(
+        activity: Activity,
+        datalinkUrl: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) {
+        execute(
+            activity = activity,
+            type = DatalinkExecuteType.OpenUrl(datalinkUrl),
             completion = completion
         )
     }
@@ -195,6 +218,11 @@ class Datalink(
                     datalinkRepository.getDatalink(
                         DatalinkGetRequest(type.uniqueID)
                     )
+                }
+            }
+            is DatalinkExecuteType.OpenUrl -> {
+                withContext(Dispatchers.IO) {
+                    DatalinkGetResponse(datalink = DatalinkModel(uniqueID = "openUrl", url = type.url), redirectURL = "type.url")
                 }
             }
             is DatalinkExecuteType.Initiate -> {
