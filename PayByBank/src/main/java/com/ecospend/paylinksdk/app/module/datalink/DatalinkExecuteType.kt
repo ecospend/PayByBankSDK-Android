@@ -1,6 +1,5 @@
 package com.ecospend.paybybank.app.module.datalink
 
-import com.ecospend.paybybank.app.module.paylink.PaylinkExecuteType
 import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkCreateRequest
 
 sealed class DatalinkExecuteType {

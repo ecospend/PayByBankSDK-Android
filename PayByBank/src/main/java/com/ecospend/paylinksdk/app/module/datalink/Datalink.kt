@@ -2,8 +2,6 @@ package com.ecospend.paybybank.app.module.datalink
 
 import android.app.Activity
 import com.ecospend.paybybank.app.PayByBankState
-import com.ecospend.paybybank.app.module.frPayment.FrPaymentExecuteType
-import com.ecospend.paybybank.app.module.paylink.PaylinkExecuteType
 import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkCreateRequest
 import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkDeleteRequest
 import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkGetConsentDatalinkRequest
@@ -11,7 +9,6 @@ import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkGetRequ
 import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkCreateResponse
 import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkGetResponse
 import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkModel
-import com.ecospend.paybybank.data.remote.model.paylink.response.PaylinkGetResponse
 import com.ecospend.paybybank.data.repository.DatalinkRepository
 import com.ecospend.paybybank.data.repository.IamRepository
 import com.ecospend.paybybank.shared.coroutine.Coroutine
