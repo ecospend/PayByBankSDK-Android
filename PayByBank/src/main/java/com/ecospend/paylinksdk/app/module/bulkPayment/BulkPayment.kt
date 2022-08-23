@@ -2,14 +2,11 @@ package com.ecospend.paybybank.app.module.bulkPayment
 
 import android.app.Activity
 import com.ecospend.paybybank.app.PayByBankState
-import com.ecospend.paybybank.app.module.datalink.DatalinkExecuteType
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentCreateRequest
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentCreateResponse
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentDeleteRequest
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentGetRequest
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentGetResponse
-import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkGetResponse
-import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkModel
 import com.ecospend.paybybank.data.repository.BulkPaymentRepository
 import com.ecospend.paybybank.data.repository.IamRepository
 import com.ecospend.paybybank.shared.coroutine.Coroutine

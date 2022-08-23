@@ -2,8 +2,6 @@ package com.ecospend.paybybank.app.module.vrplink
 
 import android.app.Activity
 import com.ecospend.paybybank.app.PayByBankState
-import com.ecospend.paybybank.app.module.paylink.PaylinkExecuteType
-import com.ecospend.paybybank.data.remote.model.paylink.response.PaylinkGetResponse
 import com.ecospend.paybybank.data.remote.model.vrplink.request.VRPlinkCreateRequest
 import com.ecospend.paybybank.data.remote.model.vrplink.request.VRPlinkDeleteRequest
 import com.ecospend.paybybank.data.remote.model.vrplink.request.VRPlinkGetRecordsRequest
