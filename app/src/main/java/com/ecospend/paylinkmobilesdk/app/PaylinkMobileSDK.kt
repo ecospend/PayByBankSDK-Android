@@ -10,7 +10,7 @@ class PaylinkMobileSDK : Application() {
         super.onCreate()
         PayByBank.configure(
             environment = PayByBankEnvironment.Sandbox,
-            authentication = PayByBankAuthentication.Token("*********", "***********")
+            token = "*********"
         )
     }
 }
