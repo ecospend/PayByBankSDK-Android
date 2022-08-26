@@ -3,7 +3,6 @@ package com.ecospend.paylinkmobilesdk.app
 import android.app.Application
 import com.ecospend.paybybank.app.PayByBank
 import com.ecospend.paybybank.app.PayByBankEnvironment
-import com.ecospend.paylinksdk.app.PayByBankAuthentication
 
 class PaylinkMobileSDK : Application() {
     override fun onCreate() {
