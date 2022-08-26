@@ -74,17 +74,19 @@ class Paylink(
      *  Opens webview using with `url` of paylink
      *
      *@property activity: Activty that provides to present bank selection
-     *@property paylinkUrl:  Unique id value of paylink.
+     *@property paylinkUrl:  Url of paylink.
+     *@property redirectUrl:  Redirect url of paylink.
      *@property completion: It provides to handle result or error
      */
     fun openUrl(
         activity: Activity,
         paylinkUrl: String,
+        redirectUrl: String,
         completion: (PayByBankResult?, PayByBankError?) -> Unit
     ) {
         execute(
             activity = activity,
-            type = PaylinkExecuteType.OpenUrl(paylinkUrl),
+            type = PaylinkExecuteType.OpenUrl(paylinkUrl, redirectUrl),
             completion = completion
         )
     }
@@ -201,7 +203,7 @@ class Paylink(
             }
             is PaylinkExecuteType.OpenUrl -> {
                 withContext(Dispatchers.IO) {
-                    PaylinkGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = "type.url")
+                    PaylinkGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = type.redirectUrl)
                 }
             }
             is PaylinkExecuteType.Initiate -> {

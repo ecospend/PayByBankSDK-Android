@@ -74,17 +74,19 @@ class FrPayment(
      *  Opens webview using with `url` of Frplink
      *
      *@property activity: Activty that provides to present bank selection
-     *@property frpUrl:  Unique id value of paylink.
+     *@property frpUrl:  Url of fr payment.
+     *@property redirectUrl:  Redirect url of fr payment.
      *@property completion: It provides to handle result or error
      */
     fun openUrl(
         activity: Activity,
         frpUrl: String,
+        redirectUrl: String,
         completion: (PayByBankResult?, PayByBankError?) -> Unit
     ) {
         execute(
             activity = activity,
-            type = FrPaymentExecuteType.OpenUrl(frpUrl),
+            type = FrPaymentExecuteType.OpenUrl(frpUrl, redirectUrl),
             completion = completion
         )
     }
@@ -201,7 +203,7 @@ class FrPayment(
             }
             is FrPaymentExecuteType.OpenUrl -> {
                 withContext(Dispatchers.IO) {
-                    FrPaymentGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = "type.url")
+                    FrPaymentGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = type.redirectUrl)
                 }
             }
             is FrPaymentExecuteType.Initiate -> {
