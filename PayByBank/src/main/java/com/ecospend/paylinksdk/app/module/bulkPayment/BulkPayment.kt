@@ -50,17 +50,19 @@ class BulkPayment(
      *  Opens webview using with `url` of BulkPayment
      *
      *@property activity: Activty that provides to present bank selection
-     *@property bulkPaymentUrl:  Unique id value of paylink.
+     *@property bulkPaymentUrl:  Url value of bulk payment.
+     *@property redirectUrl:  Redirect url of bulk payment.
      *@property completion: It provides to handle result or error
      */
     fun openUrl(
         activity: Activity,
         bulkPaymentUrl: String,
+        redirectUrl: String,
         completion: (PayByBankResult?, PayByBankError?) -> Unit
     ) {
         execute(
             activity = activity,
-            type = BulkPaymentExecuteType.OpenUrl(bulkPaymentUrl),
+            type = BulkPaymentExecuteType.OpenUrl(bulkPaymentUrl, redirectUrl),
             completion = completion
         )
     }
@@ -191,7 +193,7 @@ class BulkPayment(
             }
             is BulkPaymentExecuteType.OpenUrl -> {
                 withContext(Dispatchers.IO) {
-                    BulkPaymentGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = "type.url")
+                    BulkPaymentGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = type.redirectUrl)
                 }
             }
             is BulkPaymentExecuteType.Initiate -> {

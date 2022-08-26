@@ -75,17 +75,19 @@ class VRPlink(
      *  Opens webview using with `url` of vrpLink
      *
      *@property activity: Activty that provides to present bank selection
-     *@property vrpUrl:  Unique id value of vrpLink.
+     *@property vrpUrl:  Vrp of vrpLink.
+     *@property redirectUrl:  Redirect url of vrpLink.
      *@property completion: It provides to handle result or error
      */
     fun openUrl(
         activity: Activity,
         vrpUrl: String,
+        redirectUrl: String,
         completion: (PayByBankResult?, PayByBankError?) -> Unit
     ) {
         execute(
             activity = activity,
-            type = VRPlinkExecuteType.OpenUrl(vrpUrl),
+            type = VRPlinkExecuteType.OpenUrl(vrpUrl, redirectUrl),
             completion = completion
         )
     }
@@ -218,7 +220,7 @@ class VRPlink(
             }
             is VRPlinkExecuteType.OpenUrl -> {
                 withContext(Dispatchers.IO) {
-                    VRPlinkGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = "type.url")
+                    VRPlinkGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = type.redirectUrl)
                 }
             }
             is VRPlinkExecuteType.Initiate -> {

@@ -55,17 +55,19 @@ class Datalink(
      *  Opens webview using with `url` of Datalink
      *
      *@property activity: Activty that provides to present bank selection
-     *@property datalinkUrl:  Unique id value of paylink.
+     *@property datalinkUrl:  Url of paylink.
+     *@property redirectUrl:  Redirect url value of paylink.
      *@property completion: It provides to handle result or error
      */
     fun openUrl(
         activity: Activity,
         datalinkUrl: String,
+        redirectUrl: String,
         completion: (PayByBankResult?, PayByBankError?) -> Unit
     ) {
         execute(
             activity = activity,
-            type = DatalinkExecuteType.OpenUrl(datalinkUrl),
+            type = DatalinkExecuteType.OpenUrl(datalinkUrl, redirectUrl),
             completion = completion
         )
     }
@@ -219,7 +221,7 @@ class Datalink(
             }
             is DatalinkExecuteType.OpenUrl -> {
                 withContext(Dispatchers.IO) {
-                    DatalinkGetResponse(datalink = DatalinkModel(uniqueID = "openUrl", url = type.url), redirectURL = "type.url")
+                    DatalinkGetResponse(datalink = DatalinkModel(uniqueID = "openUrl", url = type.url), redirectURL = type.redirectUrl)
                 }
             }
             is DatalinkExecuteType.Initiate -> {

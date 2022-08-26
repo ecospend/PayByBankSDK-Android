@@ -94,10 +94,10 @@ object PayByBank {
      */
     fun configure(
         environment: PayByBankEnvironment,
-        authentication: PayByBankAuthentication
+        token: String
     ) = PayByBankState.Config
         .apply {
-            this.authentication = authentication
+            this.authentication = PayByBankAuthentication.Token(token)
             this.environment = environment
         }
 
