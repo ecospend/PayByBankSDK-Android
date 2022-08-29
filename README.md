@@ -54,8 +54,6 @@ To start using our API, you need to onboard with us and get a Client Id (`client
 
 Once onboarded, a Client Id is generated for you and you will have access to our Management Console, through which you can generate your Client Secret(s).
 
-- The `client_id` is created by Ecospend when your organization is registered with us.
-- The `client_secret` is a security key that your administrator should create from the Management Console. This is not visible to or accessible  by the Ecospend team. Therefore, you should store it safely.
 - The `access_token` is required for all subsequent requests to the API. You should keep it safe and secure during its lifetime. The lifetime is configurable.
 
 You will be given separate pairs of Client Id and Client Secret for our `Sandbox` and `Production` environments respectively. Ecospend does not store these parameters; therefore, you need to keep them safe and secure.
@@ -72,14 +70,16 @@ PayByBank SDK supports [Client Credentials Flow](https://en.wikipedia.org/wiki/O
 - Token-Based Authentication: `PayByBank.configure` function should be called to access `access_token` before using APIs of PayByBank SDK. When `access_token` is expired, `PayByBank.configure` function should be called again. To generate `access_token`, check out the [Get Access Token](https://docs.ecospend.com/api/intro/#tag/Get-Access-Token) documentation.
 
 ```
-PayByBank.configure(environment: <environment>, 
-                    authentication: .clientCredentials(clientID: <client_id>, clientSecret: <client_secret>))
 
 // or
 
 PayByBank.configure(environment: <environment>, 
-                    authentication: .token(<access_token>))
+                    token: .token(<access_token>))
 ```
+###  Without Authentication
+
+You can open payment or verification urls via OpenWithUrl methods. It is not requeire to set acces token for this operations. 
+
 
 ## Sample Projects
 
