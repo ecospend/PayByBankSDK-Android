@@ -60,7 +60,94 @@ You will be given separate pairs of Client Id and Client Secret for our `Sandbox
 
 - `Sandbox` environment should be used for testing purposes.
 - `Production` environment should be used for released applications.
+- 
+###  Without Authentication
 
+You can open payment or verification urls via OpenWithUrl methods. It is not requeire to set acces token for this operations.
+```
+    ------Bulk Payment 
+    /**
+     *  Opens webview using with `url` of BulkPayment
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property bulkPaymentUrl:  Url value of bulk payment.
+     *@property redirectUrl:  Redirect url of bulk payment.
+     *@property completion: It provides to handle result or error
+     */
+    fun openUrl(
+        activity: Activity,
+        bulkPaymentUrl: String,
+        redirectUrl: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    )
+    
+    
+    
+    ------Datalink
+     /**
+     *  Opens webview using with `url` of Datalink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property datalinkUrl:  Url of paylink.
+     *@property redirectUrl:  Redirect url value of paylink.
+     *@property completion: It provides to handle result or error
+     */
+    fun openUrl(
+        activity: Activity,
+        datalinkUrl: String,
+        redirectUrl: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    )
+    
+    ----------FrPayment
+    /**
+     *  Opens webview using with `url` of Frplink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property frpUrl:  Url of fr payment.
+     *@property redirectUrl:  Redirect url of fr payment.
+     *@property completion: It provides to handle result or error
+     */
+    fun openUrl(
+        activity: Activity,
+        frpUrl: String,
+        redirectUrl: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) 
+    
+    -----Paylink
+     /**
+     *  Opens webview using with `url` of paylink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property paylinkUrl:  Url of paylink.
+     *@property redirectUrl:  Redirect url of paylink.
+     *@property completion: It provides to handle result or error
+     */
+    fun openUrl(
+        activity: Activity,
+        paylinkUrl: String,
+        redirectUrl: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    )
+    
+    --------VrpLink
+     /**
+     *  Opens webview using with `url` of vrpLink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property vrpUrl:  Vrp of vrpLink.
+     *@property redirectUrl:  Redirect url of vrpLink.
+     *@property completion: It provides to handle result or error
+     */
+    fun openUrl(
+        activity: Activity,
+        vrpUrl: String,
+        redirectUrl: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    )
+    
+```
 ### Authentication
 
 PayByBank SDK supports [Client Credentials Flow](https://en.wikipedia.org/wiki/OAuth) and [Token-Based Authentication](https://en.wikipedia.org/wiki/Access_token) to access Ecospend Gateway APIs.
@@ -70,8 +157,6 @@ PayByBank SDK supports [Client Credentials Flow](https://en.wikipedia.org/wiki/O
 - Token-Based Authentication: `PayByBank.configure` function should be called to access `access_token` before using APIs of PayByBank SDK. When `access_token` is expired, `PayByBank.configure` function should be called again. To generate `access_token`, check out the [Get Access Token](https://docs.ecospend.com/api/intro/#tag/Get-Access-Token) documentation.
 
 ```
-
-// or
 
 PayByBank.configure(environment: <environment>, 
                     token: .token(<access_token>))
