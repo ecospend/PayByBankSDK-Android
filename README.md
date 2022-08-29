@@ -160,7 +160,421 @@ PayByBank SDK supports [Client Credentials Flow](https://en.wikipedia.org/wiki/O
 
 PayByBank.configure(environment: <environment>, 
                     token: .token(<access_token>))
+                                    
+     ------Bulk Payment
+    /**  Opens webview using with `uniqueID` of the BulkPayment Paylink.
+     *
+     *@property activity: Activity that provides to present bank selection
+     *@property uniqueID: Unique id value of BulkPayment.
+     *@property completion: It provides to handle result or error
+     */
+    fun open(
+        activity: Activity,
+        uniqueID: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) 
+
+    /**  Opens webview using with request model of the BulkPayment Paylink.
+     *
+     *@property activity: Activity that provides to present bank selection
+     *@property request: Request to create BulkPayment.
+     *@property completion: It provides to handle result or error
+     */
+    fun initiate(
+        activity: Activity,
+        request: BulkPaymentCreateRequest,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) 
+
+    /**  Creates BulkPayment
+     *
+     *@property request: Request to create BulkPayment.
+     *@property completion: It provides to handle result or error
+     */
+    fun createBulkPayment(
+        request: BulkPaymentCreateRequest,
+        completion: (BulkPaymentCreateResponse?, PayByBankError?) -> Unit
+    ) 
+
+    /**  Gets BulkPayment detail
+     *
+     *@property request: Request to get detail of  BulkPayment.
+     *@property completion: It provides to handle result or error
+     */
+    fun getBulkPayment(
+        request: BulkPaymentGetRequest,
+        completion: (BulkPaymentGetResponse?, PayByBankError?) -> Unit
+    ) 
+    
+    /**  Soft deletes the BulkPayment Paylink with given id.
+     *@property request: Request to deactivate BulkPayment.
+     *@property completion: It provides to handle result or error
+     */
+    fun deactivateBulkPayment(
+        request: BulkPaymentDeleteRequest,
+        completion: (Boolean?, PayByBankError?) -> Unit
+    ) 
+    
+     ------Datalink 
+       
+     /**
+     *  Opens webview using with `uniqueID` of datalink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property uniqueID: Unique id value of datalink.
+     *@property completion: It provides to handle result or error
+     */
+    fun open(
+        activity: Activity,
+        uniqueID: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     *  Opens webview using with request model of datalink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property request: Request to create datalink.
+     *@property completion: It provides to handle result or error
+     */
+    fun initiate(
+        activity: Activity,
+        request: DatalinkCreateRequest,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     *   Creates Datalink
+     *
+     *@property request: Request to create Datalink
+     *@property completion: It provides to handle result or error
+     */
+    fun createDatalink(
+        request: DatalinkCreateRequest,
+        completion: (DatalinkCreateResponse?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     *  Gets Datalink detail
+     *
+     *@property request: Request to get Datalink detail
+     *@property completion: It provides to handle result or error
+     */
+    fun getDatalink(
+        request: DatalinkGetRequest,
+        completion: (DatalinkGetResponse?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     * Deletes the Datalink with given id.
+     *
+     *@property request: Request to soft delete Datalink
+     *@property completion: It provides to handle result or error
+     */
+    fun deleteDatalink(
+        request: DatalinkDeleteRequest,
+        completion: (Boolean?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     *  Returns datalink with given `consentID`
+     *
+     *@property request:  Request to get Datalink of a consent
+     *@property completion: It provides to handle result or error
+     */
+    fun getDatalinkOfConsent(
+        request: DatalinkGetConsentDatalinkRequest,
+        completion: (DatalinkGetResponse?, PayByBankError?) -> Unit
+    )
+    
+     ------FrPayment
+     
+     /**
+     *  Opens webview using with request model of FrPayment
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property request: Request to create FrPayment
+     *@property completion: It provides to handle result or error
+     */
+    fun initiate(
+        activity: Activity,
+        request: FrPaymentCreateRequest,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     *  Opens webview using with `uniqueID` of FrPayment
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property uniqueID: Unique id value of FrPayment.
+     *@property completion: It provides to handle result or error
+     */
+    fun open(
+        activity: Activity,
+        uniqueID: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    )
+
+    /**
+     * Creates FrPayment
+     *
+     *@property request: Request to create FrPayment
+     *@property completion: It provides to handle result or error
+     */
+    fun createFrPayment(
+        request: FrPaymentCreateRequest,
+        completion: (FrPaymentCreateResponse?, PayByBankError?) -> Unit
+    )
+
+    /**
+     *  Gets FrPayment detail
+     *
+     *@property request: Request to get FrPayment detail
+     *@property completion: It provides to handle result or error
+     */
+    fun getFrPayment(
+        request: FrPaymentGetRequest,
+        completion: (FrPaymentGetResponse?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     *  Soft deletes FrPayment with given id
+     *
+     *@property request: Request to get FrPayment detail
+     *@property completion: It provides to handle result or error
+     */
+    fun deactivateFrPayment(
+        request: FrPaymentDeleteRequest,
+        completion: (Boolean, PayByBankError?) -> Unit
+    )
+    
+    -----------Paylink 
+    
+    /**
+     *  Opens bank application or bank website using with request model of payment
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property request: Request to create paylink
+     *@property completion: It provides to handle result or error
+     */
+    fun initiate(
+        activity: Activity,
+        request: PaylinkCreateRequest,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     *  Opens webview using with `uniqueID` of paylink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property uniqueID:  Unique id value of paylink.
+     *@property completion: It provides to handle result or error
+     */
+    fun open(
+        activity: Activity,
+        uniqueID: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) {
+        execute(
+            activity = activity,
+            type = PaylinkExecuteType.Open(uniqueID),
+            completion = completion
+        )
+    }
+
+    /**
+     * Creates Paylink
+     *
+     *@property request: Request to create Paylink
+     *@property completion: It provides to handle result or error
+     */
+    fun createPaylink(
+        request: PaylinkCreateRequest,
+        completion: (PaylinkCreateResponse?, PayByBankError?) -> Unit
+    )
+
+    /**
+     * Creates Paylink
+     *
+     *@property request: Request to create Paylink
+     *@property completion: It provides to handle result or error
+     */
+    fun getPaylink(
+        request: PaylinkGetRequest,
+        completion: (PaylinkGetResponse?, PayByBankError?) -> Unit
+    )
+
+    /**
+     * Deactivates Paylink
+     *
+     *@property request: Request to create Paylink
+     *@property completion: It provides to handle result or error
+     */
+    fun deActivatePaylink(
+        request: PaylinkDeleteRequest,
+        completion: (Boolean, PayByBankError?) -> Unit
+    )
+    
+    
+    -------------Vrplink
+     /**
+     * Opens webview using with request model of VRPlink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property request: Request to create VRPlink
+     *@property completion: It provides to handle result or error
+     */
+    fun initiate(
+        activity: Activity,
+        request: VRPlinkCreateRequest,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     *  Opens webview using with `uniqueID` of VRPlink
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property uniqueID: Unique id value of VRPlink.
+     *@property completion: It provides to handle result or error
+     */
+    fun open(
+        activity: Activity,
+        uniqueID: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    )
+
+    /**
+     *  Creates VRPlink
+     *
+     *@property request: Request to create VRPlink
+     *@property completion: It provides to handle result or error
+     */
+    fun createVRPlink(
+        request: VRPlinkCreateRequest,
+        completion: (VRPlinkCreateResponse?, PayByBankError?) -> Unit
+    ) -
+
+    /**
+     *   Gets VRPlink detail
+     *
+     *@property request: Request to get VRPlink detail
+     *@property completion: It provides to handle result or error
+     */
+    fun getVRPlink(
+        request: VRPlinkGetRequest,
+        completion: (VRPlinkGetResponse?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     *   Soft deletes the VRPlink with given id.
+     *
+     *@property request: Request to deactivate VRPlink
+     *@property completion: It provides to handle result or error
+     */
+    fun deactivateVRPlink(
+        request: VRPlinkDeleteRequest,
+        completion: (Boolean?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     *  Returns records of VRPlink
+     *
+     *@property request: Request to get VRPlink records
+     *@property completion: It provides to handle result or error
+     */
+    fun getVRPlinkRecords(
+        request: VRPlinkGetRecordsRequest,
+        completion: (List<VRPlinkGetRecordsResponse>?, PayByBankError?) -> Unit
+    ) 
+    
+    --------Payment 
+    /**
+     *  Opens bank application or bank website using with request model of payment
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property request: Request to create payment
+     *@property completion: It provides to handle result or error
+     */
+    fun initiate(
+        activity: Activity,
+        request: PaymentCreateRequest,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    )
+
+    /**
+     * Opens bank application or bank website using with `id` of payment
+     *
+     *@property activity: Activty that provides to present bank selection
+     *@property uniqueID: Unique id value of payment.
+     *@property completion: It provides to handle result or error
+     */
+    fun open(
+        activity: Activity,
+        uniqueID: String,
+        completion: (PayByBankResult?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     *  Opens bank application or bank website using with request model of payment
+     *
+     *@property request: Request to create payment.
+     *@property completion: It provides to handle result or error
+     */
+    fun createPayment(
+        request: PaymentCreateRequest,
+        completion: (PaymentCreateResponse?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     *  Gets payments.
+     *
+     *@property request:  Request to list of payments with filters.
+     *@property completion: It provides to handle result or error
+     */
+    fun listPayments(
+        request: PaymentListRequest,
+        completion: (PaymentListResponse?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     *  Gets payment detail.
+     *
+     *@property request: : Request to get payment detail with id.
+     *@property completion: It provides to handle result or error
+     */
+    fun getPayment(
+        request: PaymentGetRequest,
+        completion: (PaymentGetResponse?, PayByBankError?) -> Unit
+    ) 
+
+    /**
+     * Checks availability of payment url.
+     *
+     * 'url-consumed' endpoint checks whether the bank's payment url has been visited by the PSU.
+     * Return's true if the PSU has logged in to the banking system for this payment.
+     * In such case either wait for the PSU to finish the journey, or create a new payment.
+     *
+     *@property request: Request to check availability of payment url.
+     *@property completion: It provides to handle result or error
+     */
+    fun checkPaymentURL(
+        request: PaymentCheckURLRequest,
+        completion: (PaymentCheckURLResponse?, PayByBankError?) -> Unit
+    )
+
+    /**
+     *  Creates refund for given payment
+     *
+     *@property request: Request to create refund for given payment.
+     *@property completion: It provides to handle result or error
+     */
+    fun createRefund(
+        request: PaymentCreateRefundRequest,
+        completion: (PaymentCreateResponse?, PayByBankError?) -> Unit
+    ) 
 ```
+
+
 ###  Without Authentication
 
 You can open payment or verification urls via OpenWithUrl methods. It is not requeire to set acces token for this operations. 
