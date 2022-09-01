@@ -78,15 +78,16 @@ class Paylink(
      *@property redirectUrl:  Redirect url of paylink.
      *@property completion: It provides to handle result or error
      */
-    fun openUrl(
+    fun openWithUrl(
         activity: Activity,
+        uniqueID: String,
         paylinkUrl: String,
         redirectUrl: String,
         completion: (PayByBankResult?, PayByBankError?) -> Unit
     ) {
         execute(
             activity = activity,
-            type = PaylinkExecuteType.OpenUrl(paylinkUrl, redirectUrl),
+            type = PaylinkExecuteType.OpenWithUrl(uniqueID, paylinkUrl, redirectUrl),
             completion = completion
         )
     }
@@ -201,9 +202,9 @@ class Paylink(
                     )
                 }
             }
-            is PaylinkExecuteType.OpenUrl -> {
+            is PaylinkExecuteType.OpenWithUrl -> {
                 withContext(Dispatchers.IO) {
-                    PaylinkGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = type.redirectUrl)
+                    PaylinkGetResponse(uniqueID = type.url, url = type.url, redirectURL = type.redirectUrl)
                 }
             }
             is PaylinkExecuteType.Initiate -> {
@@ -232,6 +233,9 @@ class Paylink(
                 completion(null, PayByBankError.WrongPaylink("url Error."))
                 return null
             }
+        if (!url.contains("ecospend.com")) {
+            completion(null, PayByBankError.WrongPaylink("Url must contain Ecospend services"))
+        }
         val redirectURL = response.redirectURL
             ?: run {
                 completion(null, PayByBankError.WrongPaylink("redirectUrl Error."))

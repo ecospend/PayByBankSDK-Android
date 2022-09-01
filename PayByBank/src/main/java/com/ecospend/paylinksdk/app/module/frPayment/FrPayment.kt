@@ -78,15 +78,16 @@ class FrPayment(
      *@property redirectUrl:  Redirect url of fr payment.
      *@property completion: It provides to handle result or error
      */
-    fun openUrl(
+    fun openWithUrl(
         activity: Activity,
+        uniqueID: String,
         frpUrl: String,
         redirectUrl: String,
         completion: (PayByBankResult?, PayByBankError?) -> Unit
     ) {
         execute(
             activity = activity,
-            type = FrPaymentExecuteType.OpenUrl(frpUrl, redirectUrl),
+            type = FrPaymentExecuteType.OpenWithUrl(uniqueID, frpUrl, redirectUrl),
             completion = completion
         )
     }
@@ -201,9 +202,9 @@ class FrPayment(
                     )
                 }
             }
-            is FrPaymentExecuteType.OpenUrl -> {
+            is FrPaymentExecuteType.OpenWithUrl -> {
                 withContext(Dispatchers.IO) {
-                    FrPaymentGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = type.redirectUrl)
+                    FrPaymentGetResponse(uniqueID = type.uniqueID, url = type.url, redirectURL = type.redirectUrl)
                 }
             }
             is FrPaymentExecuteType.Initiate -> {
@@ -232,6 +233,9 @@ class FrPayment(
                 completion(null, PayByBankError.WrongPaylink("url Error."))
                 return null
             }
+        if (!url.contains("ecospend.com")) {
+            completion(null, PayByBankError.WrongPaylink("Url must contain Ecospend services"))
+        }
         val redirectURL = response.redirectURL
             ?: run {
                 completion(null, PayByBankError.WrongPaylink("redirectUrl Error."))

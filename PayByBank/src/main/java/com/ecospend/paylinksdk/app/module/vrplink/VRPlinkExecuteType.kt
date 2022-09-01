@@ -4,6 +4,6 @@ import com.ecospend.paybybank.data.remote.model.vrplink.request.VRPlinkCreateReq
 
 sealed class VRPlinkExecuteType {
     class Open(val id: String) : VRPlinkExecuteType()
-    class OpenUrl(val url: String, val redirectUrl: String) : VRPlinkExecuteType()
+    class OpenWithUrl(val uniqueID: String, val url: String, val redirectUrl: String) : VRPlinkExecuteType()
     class Initiate(val request: VRPlinkCreateRequest) : VRPlinkExecuteType()
 }
