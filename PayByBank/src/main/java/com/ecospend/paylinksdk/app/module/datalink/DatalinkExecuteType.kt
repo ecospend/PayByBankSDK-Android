@@ -4,6 +4,6 @@ import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkCreateR
 
 sealed class DatalinkExecuteType {
     class Open(val uniqueID: String) : DatalinkExecuteType()
-    class OpenUrl(val url: String, val redirectUrl: String) : DatalinkExecuteType()
+    class OpenWithUrl(val uniqueID: String, val url: String, val redirectUrl: String) : DatalinkExecuteType()
     class Initiate(val datalinkCreateRequest: DatalinkCreateRequest) : DatalinkExecuteType()
 }

@@ -28,7 +28,7 @@ class BulkPayment(
     private val iamRepository: IamRepository,
     private val bulkPaymentRepository: BulkPaymentRepository
 ) {
-/**  Opens webview using with `uniqueID` of the BulkPayment Paylink.
+    /**  Opens webview using with `uniqueID` of the BulkPayment Paylink.
      *
      *@property activity: Activity that provides to present bank selection
      *@property uniqueID: Unique id value of BulkPayment.
@@ -54,15 +54,16 @@ class BulkPayment(
      *@property redirectUrl:  Redirect url of bulk payment.
      *@property completion: It provides to handle result or error
      */
-    fun openUrl(
+    fun OpenWithUrl(
         activity: Activity,
+        uniqueID: String,
         bulkPaymentUrl: String,
         redirectUrl: String,
         completion: (PayByBankResult?, PayByBankError?) -> Unit
     ) {
         execute(
             activity = activity,
-            type = BulkPaymentExecuteType.OpenUrl(bulkPaymentUrl, redirectUrl),
+            type = BulkPaymentExecuteType.OpenWithUrl(uniqueID, bulkPaymentUrl, redirectUrl),
             completion = completion
         )
     }
@@ -191,9 +192,9 @@ class BulkPayment(
                     )
                 }
             }
-            is BulkPaymentExecuteType.OpenUrl -> {
+            is BulkPaymentExecuteType.OpenWithUrl -> {
                 withContext(Dispatchers.IO) {
-                    BulkPaymentGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = type.redirectUrl)
+                    BulkPaymentGetResponse(uniqueID = type.uniqueID, url = type.url, redirectURL = type.redirectUrl)
                 }
             }
             is BulkPaymentExecuteType.Initiate -> {
@@ -222,6 +223,9 @@ class BulkPayment(
                 completion(null, PayByBankError.WrongPaylink("url Error."))
                 return null
             }
+        if (!url.contains("ecospend.com")) {
+            completion(null, PayByBankError.WrongPaylink("Url must contain Ecospend services"))
+        }
         val redirectURL = response.redirectURL
             ?: run {
                 completion(null, PayByBankError.WrongPaylink("redirectUrl Error."))

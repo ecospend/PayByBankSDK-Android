@@ -79,15 +79,16 @@ class VRPlink(
      *@property redirectUrl:  Redirect url of vrpLink.
      *@property completion: It provides to handle result or error
      */
-    fun openUrl(
+    fun openWithUrl(
         activity: Activity,
+        uniqueID: String,
         vrpUrl: String,
         redirectUrl: String,
         completion: (PayByBankResult?, PayByBankError?) -> Unit
     ) {
         execute(
             activity = activity,
-            type = VRPlinkExecuteType.OpenUrl(vrpUrl, redirectUrl),
+            type = VRPlinkExecuteType.OpenWithUrl(uniqueID, vrpUrl, redirectUrl),
             completion = completion
         )
     }
@@ -218,9 +219,9 @@ class VRPlink(
                     )
                 }
             }
-            is VRPlinkExecuteType.OpenUrl -> {
+            is VRPlinkExecuteType.OpenWithUrl -> {
                 withContext(Dispatchers.IO) {
-                    VRPlinkGetResponse(uniqueID = "openUrl", url = type.url, redirectURL = type.redirectUrl)
+                    VRPlinkGetResponse(uniqueID = type.uniqueID, url = type.url, redirectURL = type.redirectUrl)
                 }
             }
             is VRPlinkExecuteType.Initiate -> {
@@ -247,6 +248,9 @@ class VRPlink(
                 completion(null, PayByBankError.WrongPaylink("url Error."))
                 return null
             }
+        if (!url.contains("ecospend.com")) {
+            completion(null, PayByBankError.WrongPaylink("Url must contain Ecospend services"))
+        }
         val redirectURL = response.redirectURL
             ?: run {
                 completion(null, PayByBankError.WrongPaylink("redirectUrl Error."))
