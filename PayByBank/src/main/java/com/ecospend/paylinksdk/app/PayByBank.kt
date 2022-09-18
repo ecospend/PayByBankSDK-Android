@@ -93,12 +93,10 @@ object PayByBank {
      *@property authentication: Instance's `PayByBankAuthentication`, which is configuration for authentication to Ecospend Gateway APIs.
      */
     fun configure(
-        environment: PayByBankEnvironment,
-        token: String = "****",
-        tokenType: String = "Bearer"
+        environment: PayByBankEnvironment
     ) = PayByBankState.Config
         .apply {
-            this.authentication = PayByBankAuthentication.Token(token, tokenType)
+            this.authentication = PayByBankAuthentication.Token("****", "Bearer")
             this.environment = environment
         }
 
