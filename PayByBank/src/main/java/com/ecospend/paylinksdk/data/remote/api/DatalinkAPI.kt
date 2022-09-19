@@ -4,9 +4,6 @@ import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkCreateR
 import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkCreateResponse
 import com.ecospend.paybybank.data.remote.model.datalink.response.DatalinkGetResponse
 import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface DatalinkAPI {
