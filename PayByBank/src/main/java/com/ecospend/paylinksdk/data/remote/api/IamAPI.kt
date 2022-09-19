@@ -8,7 +8,6 @@ import retrofit2.http.POST
 interface IamAPI {
 
     @FormUrlEncoded
-    @POST("connect/token")
     suspend fun connect(
         @Field("client_id") clientId: String?,
         @Field("client_secret") clientSecret: String?,

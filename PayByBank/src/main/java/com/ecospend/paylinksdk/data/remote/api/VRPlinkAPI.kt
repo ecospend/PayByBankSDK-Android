@@ -12,22 +12,18 @@ import retrofit2.http.Path
 
 interface VRPlinkAPI {
 
-    @POST("vrplinks")
     suspend fun createVRPlink(
         @Body model: VRPlinkCreateRequest
     ): VRPlinkCreateResponse?
 
-    @GET("vrplinks/{uniqueID}")
     suspend fun getVRPlink(
         @Path("uniqueID") uniqueID: String
     ): VRPlinkGetResponse?
 
-    @DELETE("vrplinks/{uniqueID}")
     suspend fun deleteVRPlink(
         @Path("uniqueID") uniqueID: String
     ): Boolean?
 
-    @GET("vrplinks/{uniqueID}/vrps")
     suspend fun getVRPlinkRecords(
         @Path("uniqueID") uniqueID: String
     ): List<VRPlinkGetRecordsResponse>?

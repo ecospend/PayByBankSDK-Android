@@ -11,17 +11,14 @@ import retrofit2.http.Path
 
 interface BulkPaymentAPI {
 
-    @POST("bulk-payment-paylinks")
     suspend fun createBulkPayment(
         @Body model: BulkPaymentCreateRequest
     ): BulkPaymentCreateResponse?
 
-    @GET("bulk-payment-paylinks/{uniqueID}")
     suspend fun getBulkPayment(
         @Path("uniqueID") uniqueID: String
     ): BulkPaymentGetResponse?
 
-    @DELETE("bulk-payment-paylinks/{uniqueID}")
     suspend fun deleteBulkPayment(
         @Path("uniqueID") uniqueID: String
     ): Boolean?

@@ -11,17 +11,14 @@ import retrofit2.http.Path
 
 interface FrPaymentAPI {
 
-    @POST("fr-payments")
     suspend fun createFrPayment(
         @Body model: FrPaymentCreateRequest?
     ): FrPaymentCreateResponse?
 
-    @GET("fr-payments/{uniqueID}")
     suspend fun getFrPayment(
         @Path("uniqueID") uniqueID: String
     ): FrPaymentGetResponse?
 
-    @DELETE("fr-payments/{uniqueID}")
     suspend fun deleteFrPayment(
         @Path("uniqueID") uniqueID: String
     ): Boolean?

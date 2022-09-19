@@ -11,22 +11,18 @@ import retrofit2.http.Path
 
 interface DatalinkAPI {
 
-    @POST("datalink")
     suspend fun createDatalink(
         @Body model: DatalinkCreateRequest
     ): DatalinkCreateResponse?
 
-    @GET("datalink/{uniqueID}")
     suspend fun getDatalink(
         @Path("uniqueID") uniqueID: String
     ): DatalinkGetResponse?
 
-    @DELETE("datalink/{uniqueID}")
     suspend fun deleteDatalink(
         @Path("uniqueID") uniqueID: String
     ): Boolean?
 
-    @GET("datalink/consent/{consentID}")
     suspend fun getDatalinkOfConsent(
         @Path("consentID") consentID: String
     ): DatalinkGetResponse?

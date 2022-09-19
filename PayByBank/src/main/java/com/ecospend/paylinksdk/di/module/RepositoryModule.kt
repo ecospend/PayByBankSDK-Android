@@ -3,7 +3,6 @@ package com.ecospend.paybybank.di.module
 import com.ecospend.paybybank.data.remote.api.BulkPaymentAPI
 import com.ecospend.paybybank.data.remote.api.DatalinkAPI
 import com.ecospend.paybybank.data.remote.api.FrPaymentAPI
-import com.ecospend.paybybank.data.remote.api.IamAPI
 import com.ecospend.paybybank.data.remote.api.PaylinkAPI
 import com.ecospend.paybybank.data.remote.api.PaymentAPI
 import com.ecospend.paybybank.data.remote.api.VRPlinkAPI
@@ -13,8 +12,6 @@ import com.ecospend.paybybank.data.repository.DatalinkRepository
 import com.ecospend.paybybank.data.repository.DatalinkRepositoryImpl
 import com.ecospend.paybybank.data.repository.FrPaymentRepository
 import com.ecospend.paybybank.data.repository.FrPaymentRepositoryImpl
-import com.ecospend.paybybank.data.repository.IamRepository
-import com.ecospend.paybybank.data.repository.IamRepositoryImpl
 import com.ecospend.paybybank.data.repository.PaylinkRepository
 import com.ecospend.paybybank.data.repository.PaylinkRepositoryImpl
 import com.ecospend.paybybank.data.repository.PaymentRepository
@@ -26,12 +23,6 @@ import com.ecospend.paybybank.di.core.EcoDi
 object RepositoryModule
 
 fun RepositoryModule.inject() {
-
-    /** Provides: IamRepository */
-    EcoDi.provide<IamRepository> {
-        val iamApi = EcoDi.inject<IamAPI>()
-        IamRepositoryImpl(iamApi)
-    }
 
     /** Provides: PaylinkRepository */
     EcoDi.provide<PaylinkRepository> {

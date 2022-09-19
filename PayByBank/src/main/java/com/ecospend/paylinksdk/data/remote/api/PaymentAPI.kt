@@ -13,27 +13,22 @@ import retrofit2.http.Path
 
 interface PaymentAPI {
 
-    @POST("payments")
     suspend fun createPayment(
         @Body model: PaymentCreateRequest
     ): PaymentCreateResponse?
 
-    @GET("payments")
     suspend fun getPayment(
         @Path("id") id: String
     ): PaymentGetResponse?
 
-    @GET("payments/{id}")
     suspend fun listPayments(
         @Body model: PaymentListRequest
     ): PaymentListResponse?
 
-    @GET("payments/{id}/url-consumed")
     suspend fun checkPaymentURL(
         @Path("id") id: String
     ): PaymentCheckURLResponse?
 
-    @POST("payments/{id}/refund")
     suspend fun createRefund(
         @Path("id") id: String
     ): PaymentCreateResponse?

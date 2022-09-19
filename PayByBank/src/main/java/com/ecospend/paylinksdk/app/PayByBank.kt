@@ -4,13 +4,11 @@ import com.ecospend.paybybank.app.module.bulkPayment.BulkPayment
 import com.ecospend.paybybank.app.module.datalink.Datalink
 import com.ecospend.paybybank.app.module.frPayment.FrPayment
 import com.ecospend.paybybank.app.module.paylink.Paylink
-import com.ecospend.paybybank.app.module.payment.Payment
 import com.ecospend.paybybank.app.module.vrplink.VRPlink
 import com.ecospend.paybybank.di.AppDI
 import com.ecospend.paybybank.di.clear
 import com.ecospend.paybybank.di.core.EcoDi
 import com.ecospend.paybybank.di.setup
-import com.ecospend.paylinksdk.app.PayByBankAuthentication
 
 /**
  * PayByBank SDK.
@@ -54,17 +52,6 @@ object PayByBank {
     }
 
     /**
-     * Paylink API
-     * Note: The Ecospend Gateway presents Paylink as an alternative and easier form of Open Banking Instant Payment solution.
-     * Paylink provides you the option of downsizing the development effort for a PIS journey to a single endpoint integration.
-     * Paylink undertakes all of interaction in the payment user journey with your branding on display.
-     */
-    val payment by lazy {
-        handleDI()
-        EcoDi.inject<Payment>()
-    }
-
-    /**
      * VRPlink (Variable Recurring Payment ) API
      * Variable Recurring Payments (VRPs) let customers safely connect authorised payments providers to their bank account so that they can make payments on the customer’s behalf, in line with agreed limits.
      * VRPs offer more control and transparency than existing alternatives, such as Direct Debit payments.
@@ -96,12 +83,10 @@ object PayByBank {
         environment: PayByBankEnvironment
     ) = PayByBankState.Config
         .apply {
-            this.authentication = PayByBankAuthentication.Token("****", "Bearer")
             this.environment = environment
         }
 
     private fun handleDI() {
-        PayByBankState.Network.tokenResponse = null
         AppDI.clear()
         AppDI.setup()
     }
