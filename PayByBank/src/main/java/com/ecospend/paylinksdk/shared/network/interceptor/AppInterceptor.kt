@@ -1,6 +1,5 @@
 package com.ecospend.paybybank.shared.network.interceptor
 
-import com.ecospend.paybybank.app.PayByBankState
 import com.ecospend.paybybank.shared.extensions.trying
 import com.ecospend.paybybank.shared.logger.AppLog
 import com.ecospend.paybybank.shared.network.type.Header
@@ -20,7 +19,7 @@ class AppInterceptor : Interceptor {
             request().newBuilder().apply {
                 addHeader(
                     Header.Authorization.key,
-                    Header.Authorization.value.format(PayByBankState.Network.tokenResponse?.accessToken)
+                    Header.Authorization.value.format("*****")
                 )
             }.run {
                 val response = proceed(build())

@@ -4,11 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.ecospend.paybybank.app.PayByBank
 import com.ecospend.paybybank.data.remote.model.PayByBankNotificationOptionsRequest
 import com.ecospend.paybybank.data.remote.model.datalink.CategoryAggregationParameters
 import com.ecospend.paybybank.data.remote.model.datalink.DatalinkOptions
@@ -22,7 +19,6 @@ import com.ecospend.paybybank.data.remote.model.datalink.VerificationParameters
 import com.ecospend.paybybank.data.remote.model.datalink.request.DatalinkCreateRequest
 import com.ecospend.paybybank.data.remote.model.datalink.response.ConsentPermission
 import com.ecospend.paybybank.data.remote.model.paylink.PayByBankCurrency
-import com.ecospend.paybybank.shared.model.completion.PayByBankStatus
 import com.ecospend.paylinkmobilesdk.R
 import com.ecospend.paylinkmobilesdk.databinding.FragmentDatalinkBinding
 
@@ -44,24 +40,6 @@ class DatalinkFragment : Fragment() {
 
         binding.button.setOnClickListener {
             val request = getDatalinkCreateRequest()
-
-            PayByBank.datalink.initiate(
-                activity as AppCompatActivity,
-                request = request
-            ) { result, error ->
-
-                when {
-                    result?.status == PayByBankStatus.Initiated -> {
-                        Toast.makeText(activity, "Initiated", Toast.LENGTH_LONG).show()
-                    }
-                    result?.status == PayByBankStatus.Cancelled -> {
-                        Toast.makeText(activity, "Cancelled", Toast.LENGTH_LONG).show()
-                    }
-                    error != null -> {
-                        Toast.makeText(activity, error.toString(), Toast.LENGTH_LONG).show()
-                    }
-                }
-            }
         }
     }
 

@@ -8,8 +8,7 @@ class PaylinkMobileSDK : Application() {
     override fun onCreate() {
         super.onCreate()
         PayByBank.configure(
-            environment = PayByBankEnvironment.Sandbox,
-            token = "*********"
+            environment = PayByBankEnvironment.Sandbox
         )
     }
 }
