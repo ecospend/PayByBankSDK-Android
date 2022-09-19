@@ -4,9 +4,6 @@ import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentCreateReq
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentCreateResponse
 import com.ecospend.paybybank.data.remote.model.bulkPayment.BulkPaymentGetResponse
 import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface BulkPaymentAPI {

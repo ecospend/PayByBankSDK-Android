@@ -7,8 +7,6 @@ import com.ecospend.paybybank.data.remote.model.payment.response.PaymentCreateRe
 import com.ecospend.paybybank.data.remote.model.payment.response.PaymentGetResponse
 import com.ecospend.paybybank.data.remote.model.payment.response.PaymentListResponse
 import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface PaymentAPI {

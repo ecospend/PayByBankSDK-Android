@@ -3,7 +3,6 @@ package com.ecospend.paybybank.data.remote.api
 import com.ecospend.paybybank.data.remote.model.paylink.response.IamTokenResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
 
 interface IamAPI {
 

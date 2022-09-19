@@ -8,8 +8,6 @@ The Ecospend Gateway presents PayByBank SDK as an alternative and easier form of
 - `Bulk Payment` provides to execute the Bulk Payment order.
 - `VRPlink` provides to execute the Variable Recurring Payments consent.
 - `Datalink` is a whitelabel consent journey solution provided by Ecospend that downsizes the required implementation for the consent journey to a single endpoint integration.
-- `Payment` provides to execute the domestic instant payments, international payments, and scheduled payments.
-
 
 ## Installation
 
